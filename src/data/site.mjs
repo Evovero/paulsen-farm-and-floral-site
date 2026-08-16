@@ -4,7 +4,7 @@
 export const site = {
   name: "Paulsen Farm and Floral",
   legalName: "Paulsen Farm and Floral LLC",
-  domain: "https://www.paulsenfarmandfloral.com",
+  domain: "https://paulsenfarmandfloral.com",
   tagline: "A farm and flower business near Atlantic, Iowa.",
   city: "Atlantic",
   state: "IA",
