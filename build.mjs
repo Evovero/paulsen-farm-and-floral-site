@@ -1,7 +1,8 @@
 // Paulsen Farm and Floral - static site generator
 // FIRST REAL CONTENT BUILD, 2026-08-21. Zero dependencies, same conventions as the
 // EvoVero / Cruz Control / Omaha Masonry generators (see [Website]/Resources/Static Site
-// + Autoblog SOP.md). Six pages: home, three service pages, story, contact.
+// + Autoblog SOP.md). Six finished pages plus the ten year structure: section hubs and
+// short placeholder pages, all of them draft (noindex, out of the sitemap) until filled in.
 //
 // Everything renderable comes from src/data/*.mjs. Do not write copy into this file.
 
@@ -9,6 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { site, nav } from "./src/data/site.mjs";
 import { home, about, services, contact } from "./src/data/content.mjs";
+import { hubs, stubs, liveBlurbs, aboutChildren } from "./src/data/pages.mjs";
 
 const OUT = "dist";
 const YEAR = site.year;
@@ -81,13 +83,44 @@ function ruleArt() {
 }
 
 // ---------- chrome ----------
-function navHtml(activeHref) {
-  const links = nav
+// Dropdown nav. Desktop opens on hover and on keyboard focus; the caret button drives the
+// same state so it works on touch and on mobile, where the panel becomes an accordion.
+function navItemHtml(item, activeHref) {
+  const childHrefs = (item.groups || []).flatMap((g) => g.items.map((i) => i.href));
+  const isCurrent = item.href === activeHref;
+  const inSection = isCurrent || childHrefs.includes(activeHref);
+  const cur = isCurrent ? ' aria-current="page"' : "";
+  const top = `<a href="${item.href}"${cur}>${esc(item.label)}</a>`;
+  if (!item.groups) {
+    return `<div class="nav__item${inSection ? " is-current" : ""}">${top}</div>`;
+  }
+  const panelId = `panel-${slugId(item.label)}`;
+  const groups = item.groups
     .map(
-      (n) =>
-        `<a href="${n.href}"${n.href === activeHref ? ' aria-current="page"' : ""}>${esc(n.label)}</a>`
+      (g) => `
+              <div class="nav__group">
+                <p class="nav__group-title">${esc(g.title)}</p>
+                ${g.items
+                  .map(
+                    (i) =>
+                      `<a href="${i.href}"${i.href === activeHref ? ' aria-current="page"' : ""}>${esc(i.label)}</a>`
+                  )
+                  .join("\n                ")}
+              </div>`
     )
-    .join("\n          ");
+    .join("");
+  return `<div class="nav__item nav__item--has-panel${inSection ? " is-current" : ""}">
+          ${top}
+          <button class="nav__caret" aria-expanded="false" aria-controls="${panelId}" aria-label="Show the ${esc(item.label)} menu"><span class="chev"></span></button>
+          <div class="nav__panel" id="${panelId}">
+            <div class="nav__groups">${groups}
+            </div>
+          </div>
+        </div>`;
+}
+
+function navHtml(activeHref) {
+  const items = nav.map((n) => navItemHtml(n, activeHref)).join("\n        ");
   return `
     <header class="nav">
       <div class="nav__inner">
@@ -99,14 +132,26 @@ function navHtml(activeHref) {
           <span></span><span></span><span></span>
         </button>
         <nav class="nav__links">
-          ${links}
+        ${items}
         </nav>
       </div>
     </header>`;
 }
 
 function footerHtml() {
-  const links = nav.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join("\n            ");
+  const cols = nav
+    .filter((n) => n.groups)
+    .map(
+      (n) => `
+          <div class="footer__col">
+            <p class="footer__col-title"><a href="${n.href}">${esc(n.label)}</a></p>
+            ${n.groups
+              .flatMap((g) => g.items)
+              .map((i) => `<a href="${i.href}">${esc(i.label)}</a>`)
+              .join("\n            ")}
+          </div>`
+    )
+    .join("");
   return `
     <footer class="footer">
       <div class="footer__inner">
@@ -114,10 +159,10 @@ function footerHtml() {
           <p class="footer__name">Paulsen Farm and Floral</p>
           <p class="footer__tag">${esc(site.tagline)}</p>
           <p class="footer__meta">${esc(site.region)}. Family on this ground since ${esc(site.founded)}.</p>
+          <a class="link-arrow" href="/contact/">Join the list</a>
         </div>
-        <nav class="footer__nav">
-          ${links}
-        </nav>
+        <div class="footer__cols">${cols}
+        </div>
       </div>
       <div class="footer__base">
         <p>&copy; ${YEAR} ${esc(site.legalName)}.</p>
@@ -304,17 +349,50 @@ function faqHtml(faq) {
     </section>`;
 }
 
-function crossLinksHtml(links) {
+function crossLinksHtml(links, heading) {
   const items = links
     .map((l) => `<li><a href="${l.href}">${esc(l.label)}</a></li>`)
     .join("\n        ");
   return `
     <section class="band elsewhere">
-      <h2>Elsewhere on the farm</h2>
+      <h2>${esc(heading || "Elsewhere on the farm")}</h2>
       <ul class="elsewhere__list">
         ${items}
       </ul>
     </section>`;
+}
+
+// ---------- card lookup ----------
+// Hubs list their children by slug. A child is either one of the three finished service
+// pages (blurb lives in pages.mjs so content.mjs stays unaware of hubs) or a stub.
+const stubBySlug = Object.fromEntries(stubs.map((p) => [p.slug, p]));
+function cardFor(slug) {
+  if (liveBlurbs[slug]) return { ...liveBlurbs[slug], href: slug, live: true };
+  const st = stubBySlug[slug];
+  if (!st) throw new Error(`No card content for ${slug}. Add it to pages.mjs.`);
+  return { navLabel: st.navLabel, blurb: st.blurb, href: slug, live: false };
+}
+
+function cardGridHtml(groups) {
+  return groups
+    .map(
+      (g) => `
+    <section class="band hubgroup">
+      <h2>${esc(g.title)}</h2>
+      <div class="hubgroup__grid">
+        ${g.children
+          .map((slug) => {
+            const c = cardFor(slug);
+            return `<a class="hubcard" href="${c.href}">
+          <h3>${esc(c.navLabel)}</h3>
+          <p>${esc(c.blurb)}</p>
+        </a>`;
+          })
+          .join("\n        ")}
+      </div>
+    </section>`
+    )
+    .join("");
 }
 
 // ---------- pages ----------
@@ -422,6 +500,7 @@ function renderAbout() {
       ${ruleArt()}
     </section>
     ${sections}
+    ${crossLinksHtml(aboutChildren.map((h) => ({ href: h, label: cardFor(h).navLabel })), "More of the story")}
     ${ctaHtml({ heading: about.ctaHeading, body: about.ctaBody, label: about.ctaLabel, href: about.ctaHref, side: "floral" })}`;
 
   return layout({
@@ -544,6 +623,77 @@ function renderContact() {
   });
 }
 
+function renderHub(hub) {
+  const intro = hub.intro.map((p) => `<p>${esc(p)}</p>`).join("\n        ");
+  const body = `
+    <section class="pagehead" data-side="${hub.side}">
+      <p class="eyebrow">${esc(hub.eyebrow)}</p>
+      <h1>${esc(hub.h1)}</h1>
+      <p class="sub">${esc(hub.sub)}</p>
+      ${ruleArt()}
+    </section>
+
+    <section class="band lead">
+      ${intro}
+    </section>
+
+    ${cardGridHtml(hub.groups)}
+
+    ${ctaHtml({ heading: hub.ctaHeading, body: hub.ctaBody, label: hub.ctaLabel, href: hub.ctaHref, side: hub.side })}`;
+
+  return layout({
+    pageTitle: hub.title,
+    description: hub.description,
+    routePath: hub.slug,
+    bodyHtml: body,
+    schemas: [orgSchema(), breadcrumbSchema(hub.navLabel, hub.slug)],
+    side: hub.side,
+    noindex: hub.draft,
+  });
+}
+
+function renderStub(pg) {
+  const parentHub = hubs.find((h) => h.slug === pg.parent);
+  const parentLabel = parentHub ? parentHub.navLabel : about.eyebrow;
+  const siblings = (nav
+    .flatMap((n) => (n.groups || []).flatMap((g) => g.items))
+    .filter((i) => i.href !== pg.slug && stubBySlug[i.href] && stubBySlug[i.href].parent === pg.parent)
+    .slice(0, 4));
+
+  const paras = pg.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("\n        ");
+  const body = `
+    <section class="pagehead" data-side="${pg.side}">
+      <p class="eyebrow"><a href="${pg.parent}">${esc(parentLabel)}</a></p>
+      <h1>${esc(pg.h1)}</h1>
+      ${ruleArt()}
+    </section>
+
+    <section class="band lead">
+      ${paras}
+    </section>
+
+    ${siblings.length ? crossLinksHtml(siblings.map((i) => ({ href: i.href, label: i.label })), "Nearby on the site") : ""}
+
+    ${ctaHtml({
+      heading: "Would you want this?",
+      body:
+        "That is not a rhetorical question. What people tell us they want is what decides the order we build things in, so if this is the part that interests you, say so.",
+      label: "Join the list",
+      href: "/contact/",
+      side: pg.side,
+    })}`;
+
+  return layout({
+    pageTitle: pg.title,
+    description: pg.description,
+    routePath: pg.slug,
+    bodyHtml: body,
+    schemas: [orgSchema(), breadcrumbSchema(pg.navLabel, pg.slug)],
+    side: pg.side,
+    noindex: true,
+  });
+}
+
 function renderThankYou() {
   const body = `
     <section class="pagehead" data-side="farm">
@@ -628,6 +778,8 @@ writePage("/", renderHome());
 writePage("/about/", renderAbout());
 for (const svc of services) writePage(svc.slug, renderService(svc));
 writePage("/contact/", renderContact());
+for (const hub of hubs) writePage(hub.slug, renderHub(hub));
+for (const pg of stubs) writePage(pg.slug, renderStub(pg));
 writePage("/thankyou/", renderThankYou());
 
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), buildSitemap(), "utf8");
@@ -646,5 +798,8 @@ copyFile("styles.css");
 copyFile("site.js");
 copyFile("assets/favicon.svg");
 
-const total = indexableRoutes.length + 1;
-console.log(`Built ${total} pages to ${OUT}/ (${indexableRoutes.length} indexable + thankyou)`);
+const draftCount = hubs.length + stubs.length;
+const total = indexableRoutes.length + draftCount + 1;
+console.log(
+  `Built ${total} pages to ${OUT}/ (${indexableRoutes.length} indexable, ${draftCount} draft noindex, 1 thankyou)`
+);
