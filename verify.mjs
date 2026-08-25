@@ -5,6 +5,7 @@
 // Run after `node build.mjs`. Exits non-zero on any FAIL. Nothing publishes on a red run.
 import fs from "node:fs";
 import path from "node:path";
+import { filled } from "./src/data/filled.mjs";
 
 const OUT = "dist";
 const BASE = "https://paulsenfarmandfloral.com";
@@ -15,6 +16,10 @@ const WORD_FLOOR = 1000;
 const WORD_EXEMPT = new Set(["/", "/farm/", "/floral/", "/visit/", "/about/", "/contact/", "/thankyou/"]);
 // Pages exempt from the 55-60 / 155-160 meta spec.
 const META_EXEMPT = new Set(["/thankyou/"]);
+// Pages filled to spec but deliberately still noindex, waiting on Spencer's read before
+// they are indexed. They are held to the word floor and the meta spec NOW, so that the
+// eventual flip to indexable cannot fail. Added 2026-08-25, second triage.
+const PENDING = new Set(filled.map((f) => f.slug));
 
 let fails = 0;
 let warns = 0;
@@ -59,12 +64,12 @@ for (const r of routes()) {
 
   // 1. word count
   const words = unesc(strip(html)).split(/\s+/).filter(Boolean).length;
-  if (!isNoindex && !WORD_EXEMPT.has(r) && words < WORD_FLOOR) {
+  if ((!isNoindex || PENDING.has(r)) && !WORD_EXEMPT.has(r) && words < WORD_FLOOR) {
     fail(r, `${words} words, floor is ${WORD_FLOOR}`);
   }
 
   // 2. meta package, BOTH bounds
-  if (!isNoindex && !META_EXEMPT.has(r)) {
+  if ((!isNoindex || PENDING.has(r)) && !META_EXEMPT.has(r)) {
     const t = html.match(/<title>([\s\S]*?)<\/title>/);
     const d = html.match(/<meta name="description" content="([^"]*)"/);
     if (!t) fail(r, "no <title>");
@@ -128,9 +133,10 @@ for (const r of routes()) {
   }
 
   if (!isNoindex) console.log(`  ok    ${r}  ${words} words`);
+  else if (PENDING.has(r)) console.log(`  held  ${r}  ${words} words, filled and passing, noindex pending review`);
 }
 
-console.log(`\n${indexable} indexable, ${noindexed} noindex, ${routes().length} pages total`);
+console.log(`\n${indexable} indexable, ${noindexed} noindex (${PENDING.size} of them filled and pending review), ${routes().length} pages total`);
 console.log(fails ? `\nFAILED with ${fails} error(s), ${warns} warning(s). Do not publish.`
                   : `\nPASS. ${warns} warning(s).`);
 process.exit(fails ? 1 : 0);
