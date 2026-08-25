@@ -26,6 +26,9 @@
 //   STILL TRUE, ALWAYS. Future tense is the tool that makes this honest. A
 //   thing that is planned is described as planned. Nothing is ever written as
 //   though it is currently for sale when it is not, and no date is invented.
+//
+//   AMERICAN ENGLISH. This is a farm in southwest Iowa. No travelled, no
+//   centre, no fortnight. All three slipped into the first draft.
 // ===========================================================================
 //
 // Content rules, in full and enforced by verify.mjs where a script can see them: no
@@ -120,7 +123,7 @@ export const fillFarmA = [
       paragraphs: [
         "Eggs are the thing people ask a small farm for more than anything else, and the reason is simple. They are the easiest weekly habit to change. Most people are not going to reorganize their whole kitchen around a farm, but almost everyone will happily get their eggs from someone they can name.",
         "Alex puts it in terms of what a household actually controls. Get a deep freeze, put ten chickens in it from a farmer down the road, and you have made one real decision about your own food supply rather than leaving all of it to a shelf. Eggs are the smallest and easiest version of that same decision, which is exactly why they come up first.",
-        "There is a real difference between an egg from a flock on grass and one that has travelled a long way to reach you, and it shows up in the pan. Part of the appeal of buying close to home is that you can ask the person who raised them how it was done and get a straight answer.",
+        "There is a real difference between an egg from a flock on grass and one that has traveled a long way to reach you, and it shows up in the pan. Part of the appeal of buying close to home is that you can ask the person who raised them how it was done and get a straight answer.",
         "So the plan is to build the flock the careful way from the start, with the winter housing and the ground rotation sorted before the birds arrive, so that doing it well is also the easy way to keep doing it. That is worth a little patience up front.",
       ],
     },
@@ -343,7 +346,7 @@ export const fillFarmA = [
         {
           h3: "Straight talk about the season",
           body:
-            "There are weeks in this climate when a market garden has plenty and weeks when it has greens and little else. You will always get an honest answer from us about what is actually ready, and what is worth waiting a fortnight for.",
+            "There are weeks in this climate when a market garden has plenty and weeks when it has greens and little else. You will always get an honest answer from us about what is actually ready, and what is worth waiting another week for.",
         },
         {
           h3: "The piece everything else attaches to",
@@ -494,7 +497,7 @@ export const fillFarmA = [
         {
           h3: "Build somewhere to keep a harvest",
           body:
-            "A cool room and real shelving, on the list for the back place alongside the water and the canning storage. Storage is what lets a good harvest turn into months of selling rather than a single busy fortnight.",
+            "A cool room and real shelving, on the list for the back place alongside the water and the canning storage. Storage is what lets a good harvest turn into months of selling rather than a single busy stretch.",
         },
         {
           h3: "Add the rest around it",
