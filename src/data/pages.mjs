@@ -19,10 +19,36 @@
 // One more, specific to this file: NONE of these services exist yet. Copy is written
 // forward looking and says so in its own words. Do not rewrite any of it into the present
 // tense ("we host farm dinners") without checking that the thing is actually happening.
+//
+// NOINDEX TRIAGE, 2026-08-25. The 32 hidden pages were each given a decision rather than
+// left open indefinitely. Five were filled to spec and moved to promoted.mjs, three were
+// deleted outright (the orchard, honey, u-pick orchard), the /farm/ and /floral/ hubs were
+// opened, and the rest stay here on purpose with a reason recorded per page in the client
+// file noindex-register.md. Run `node verify.mjs` after any build before publishing.
 
 // Card blurbs for the three finished service pages, so hub grids can list them without
 // content.mjs having to know about hubs.
 export const liveBlurbs = {
+  "/nelson-farm/": {
+    navLabel: "The Nelson Farm",
+    blurb: "Grandma Janet's place, and where the operation is headed.",
+  },
+  "/farm-pickup/": {
+    navLabel: "Pickup at the Farm",
+    blurb: "Order ahead, drive out, load up. Nothing in between takes a cut.",
+  },
+  "/event-flowers/": {
+    navLabel: "Events and Celebrations",
+    blurb: "Showers, anniversaries, dinners, and the parties that are not weddings.",
+  },
+  "/sympathy-flowers/": {
+    navLabel: "Sympathy Flowers",
+    blurb: "For a service, a graveside, or a front step. Quiet and quick.",
+  },
+  "/century-farm/": {
+    navLabel: "The Century Farm",
+    blurb: "The front place, worked by Paulsens since 1905. An Iowa Century Farm.",
+  },
   "/pastured-chicken/": {
     navLabel: "Pastured Chicken",
     blurb: "Broilers raised outdoors on grass, sold direct off the farm by the batch.",
@@ -41,11 +67,11 @@ export const hubs = [
   {
     slug: "/farm/",
     side: "farm",
-    draft: true,
+    draft: false,
     navLabel: "The Farm",
-    title: "The Farm | Paulsen Farm and Floral, Cass County, Iowa",
+    title: "The Farm | Paulsen Farm and Floral in Cass County, Iowa",
     description:
-      "Pastured poultry, market vegetables, storage crops and the ways to buy them, from a Century Farm in Cass County, Iowa.",
+      "Pastured poultry, market vegetables and storage crops, plus every way to buy them, from a Century Farm in Cass County, Iowa. See what the farm side is doing.",
     eyebrow: "The farm",
     h1: "The farm side",
     sub: "Food raised on ground this family has worked since 1905.",
@@ -55,7 +81,7 @@ export const hubs = [
       "Not all of it is happening yet. We would rather show you the whole picture and let you tell us which parts matter than pretend the farm is further along than it is.",
     ],
     groups: [
-      { title: "What we raise and grow", children: ["/pastured-chicken/", "/farm-eggs/", "/thanksgiving-turkeys/", "/market-vegetables/", "/garlic/", "/orchard/", "/honey/"] },
+      { title: "What we raise and grow", children: ["/pastured-chicken/", "/farm-eggs/", "/thanksgiving-turkeys/", "/market-vegetables/", "/garlic/"] },
       { title: "How to get it", children: ["/csa/", "/farmers-markets/", "/farm-pickup/", "/wholesale/"] },
     ],
     ctaHeading: "Tell us what you would actually buy",
@@ -67,11 +93,11 @@ export const hubs = [
   {
     slug: "/floral/",
     side: "floral",
-    draft: true,
+    draft: false,
     navLabel: "Floral",
-    title: "Floral | Paulsen Farm and Floral, Iowa Flower Studio",
+    title: "Floral Design and Flowers | Paulsen Farm and Floral, Iowa",
     description:
-      "Wedding and event floral design, seasonal wreaths, bouquets and subscriptions from a flower farm and studio in Cass County, Iowa.",
+      "Wedding, event and sympathy floral design, plus seasonal wreaths and bouquets, grown on our Iowa farm where the season allows it. Near Des Moines and Omaha.",
     eyebrow: "The floral studio",
     h1: "The floral studio",
     sub: "Flowers grown here, arranged by hand, for the days that matter.",
@@ -107,7 +133,7 @@ export const hubs = [
       "None of it is open yet and we are not going to dress it up as though it were. This is the shape of what we are building toward, and it is here so you can tell us which parts you would actually come out for.",
     ],
     groups: [
-      { title: "On the farm", children: ["/seasons/", "/farm-store/", "/u-pick-flowers/", "/u-pick-orchard/"] },
+      { title: "On the farm", children: ["/seasons/", "/farm-store/", "/u-pick-flowers/"] },
       { title: "Come out for something", children: ["/farm-dinners/", "/workshops/", "/school-groups/", "/private-events/"] },
     ],
     ctaHeading: "Which of these would get you in the car?",
@@ -182,36 +208,6 @@ export const stubs = [
       "Storage crops are the quiet backbone of a small farm. They spread a harvest out, they fill a winter share, and they let a good season carry a slow one. Garlic on its own has built more than one Iowa farm.",
     ],
   },
-  {
-    slug: "/orchard/",
-    side: "farm",
-    parent: "/farm/",
-    navLabel: "The Orchard",
-    title: "The Orchard | Paulsen Farm and Floral, Cass County, Iowa",
-    description: "Apples, pears and plums planted on a Century Farm in Cass County, Iowa, for the years ahead.",
-    eyebrow: "The farm",
-    h1: "The orchard",
-    blurb: "Apples, pears and plums. The longest bet a farm makes.",
-    paragraphs: [
-      "Apples, pears and plums, planted knowing the first real harvest is years out. An orchard is the longest bet a farm makes and the one that changes a place the most.",
-      "Trees go in well before anything else on this list is finished, because the clock starts the day they are planted. Everything an orchard makes possible later, cider, u-pick, a fall people drive out for, begins with that.",
-    ],
-  },
-  {
-    slug: "/honey/",
-    side: "farm",
-    parent: "/farm/",
-    navLabel: "Honey",
-    title: "Honey | Paulsen Farm and Floral, Cass County, Iowa",
-    description: "Honey from hives kept at the edge of the flower field on a farm in Cass County, Iowa.",
-    eyebrow: "The farm",
-    h1: "Honey",
-    blurb: "Hives at the edge of the flower field, which suits everyone involved.",
-    paragraphs: [
-      "Hives at the edge of the flower field, which is the arrangement that works for everyone. The bees get acres of blooms, the flowers get worked, and we get honey that tastes like this specific piece of ground.",
-      "Honey is a small line on its own and a good one standing next to flowers. It also sells all year, which is more than almost anything else on a flower farm can say.",
-    ],
-  },
 
   // ---------- THE FARM: how to get it ----------
   {
@@ -245,21 +241,6 @@ export const stubs = [
     ],
   },
   {
-    slug: "/farm-pickup/",
-    side: "farm",
-    parent: "/farm/",
-    navLabel: "Pickup at the Farm",
-    title: "Pickup at the Farm | Paulsen Farm and Floral, Iowa",
-    description: "Order ahead and pick up at the farm in Cass County, Iowa. The shortest route from field to kitchen.",
-    eyebrow: "How to get it",
-    h1: "Pickup at the farm",
-    blurb: "Order ahead, drive out, load up. Nothing in between takes a cut.",
-    paragraphs: [
-      "Order ahead, drive out, load up. The shortest possible distance between the field and your kitchen, and the way the chickens already work.",
-      "Pickup keeps the price honest, because nothing in the middle is taking a cut. Families with an order get directions and a window from us directly rather than finding an address on a map.",
-    ],
-  },
-  {
     slug: "/wholesale/",
     side: "farm",
     parent: "/farm/",
@@ -276,36 +257,6 @@ export const stubs = [
   },
 
   // ---------- FLORAL: design work ----------
-  {
-    slug: "/event-flowers/",
-    side: "floral",
-    parent: "/floral/",
-    navLabel: "Events and Celebrations",
-    title: "Event Flowers | Paulsen Farm and Floral, Iowa",
-    description: "Floral design for showers, anniversaries, dinners and celebrations around Des Moines and Omaha.",
-    eyebrow: "The floral studio",
-    h1: "Events and celebrations",
-    blurb: "Showers, anniversaries, dinners, and the parties that are not weddings.",
-    paragraphs: [
-      "Showers, anniversaries, retirements, dinners. The parties that are not weddings but still want the room to feel like something is happening in it.",
-      "Smaller than a wedding, quicker to plan, and often more fun to design. Tell us the date, the room and roughly what you are picturing, and we can tell you what is possible for that week of the year.",
-    ],
-  },
-  {
-    slug: "/sympathy-flowers/",
-    side: "floral",
-    parent: "/floral/",
-    navLabel: "Sympathy Flowers",
-    title: "Sympathy Flowers | Paulsen Farm and Floral, Iowa",
-    description: "Arrangements for a service, a graveside or a front step, handled quickly and quietly.",
-    eyebrow: "The floral studio",
-    h1: "Sympathy flowers",
-    blurb: "For a service, a graveside, or a front step. Quiet and quick.",
-    paragraphs: [
-      "Arrangements for a service, a graveside, or a front step. Handled quickly and without fuss, because that is what this work asks for.",
-      "Sympathy work runs on short notice and it does not care what season it is, which makes it one of the steadiest things a floral studio does. Reach out and we will take it from there.",
-    ],
-  },
   {
     slug: "/our-work/",
     side: "floral",
@@ -430,21 +381,6 @@ export const stubs = [
       "U-pick turns a flower field into a reason to spend an hour somewhere. It is one of the first visitor ideas we would want to try, because it needs a field and a gate more than it needs a building.",
     ],
   },
-  {
-    slug: "/u-pick-orchard/",
-    side: "farm",
-    parent: "/visit/",
-    navLabel: "U-Pick Orchard",
-    title: "U-Pick Orchard | Paulsen Farm and Floral, Cass County, Iowa",
-    description: "Pick your own apples in September and October at a Century Farm off Interstate 80 in western Iowa.",
-    eyebrow: "Visit",
-    h1: "U-pick orchard",
-    blurb: "Apples off the tree in September and October.",
-    paragraphs: [
-      "Apples off the tree in September and October, which is roughly how most people's best fall memory already works.",
-      "This one waits on the orchard, and the orchard waits on the trees. It is the longest lead time of anything on this site, and the single best argument for planting now rather than later.",
-    ],
-  },
 
   // ---------- VISIT: come out for something ----------
   {
@@ -509,36 +445,6 @@ export const stubs = [
   },
 
   // ---------- OUR STORY ----------
-  {
-    slug: "/century-farm/",
-    side: "farm",
-    parent: "/about/",
-    navLabel: "The Century Farm",
-    title: "The Century Farm | Paulsen Farm and Floral since 1905",
-    description: "The Paulsen family has worked the front farm in Cass County, Iowa since 1905, making it an Iowa Century Farm.",
-    eyebrow: "Our story",
-    h1: "The Century Farm",
-    blurb: "The front place, worked by Paulsens since 1905.",
-    paragraphs: [
-      "The Paulsen family moved onto the front place in 1905 and has worked it ever since, which makes it an Iowa Century Farm. It runs right along Interstate 80.",
-      "A hundred and twenty years is not a marketing line. It is four generations of decisions, most of them made by people we can still name.",
-    ],
-  },
-  {
-    slug: "/nelson-farm/",
-    side: "farm",
-    parent: "/about/",
-    navLabel: "The Nelson Farm",
-    title: "The Nelson Farm | Paulsen Farm and Floral, Cass County, Iowa",
-    description: "The back farm, in Alex's grandmother's family for close to eighty years, and where the operation is headed.",
-    eyebrow: "Our story",
-    h1: "The Nelson farm",
-    blurb: "Grandma Janet's place, and where the operation is headed.",
-    paragraphs: [
-      "The back place belonged to Alex's grandma Janet. She was a teenager when her family took it on and she is 93 now, so it has been in the family somewhere close to eighty years.",
-      "This is where the farm is headed. Rain capture, canning storage, a wood stove for backup heat, a smokehouse. The infrastructure that turns a season into a way of living.",
-    ],
-  },
   {
     slug: "/how-we-farm/",
     side: "farm",
