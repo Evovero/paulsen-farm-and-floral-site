@@ -3,6 +3,9 @@
 // TEN YEAR STRUCTURE, 2026-08-21, second pass: the full site the business could grow into,
 // so Alex and Bronte can delete rather than invent. See site-map.md.
 //
+// NOINDEX TRIAGE, 2026-08-25: the orchard, honey and u-pick orchard pages were deleted
+// outright rather than left hidden. See noindex-register.md for the per page decisions.
+//
 // Still deliberately absent: street address, phone number, pricing, hours. None of those
 // are settled or approved for public release. Do not add them here without a decision on
 // file in Clients/Paulsen Farm and Floral/client-profile.md.
@@ -41,8 +44,6 @@ export const nav = [
           { label: "Thanksgiving Turkeys", href: "/thanksgiving-turkeys/" },
           { label: "Market Vegetables", href: "/market-vegetables/" },
           { label: "Garlic and Storage Crops", href: "/garlic/" },
-          { label: "The Orchard", href: "/orchard/" },
-          { label: "Honey", href: "/honey/" },
         ],
       },
       {
@@ -91,7 +92,6 @@ export const nav = [
           { label: "Seasons on the Farm", href: "/seasons/" },
           { label: "The Farm Store", href: "/farm-store/" },
           { label: "U-Pick Flowers", href: "/u-pick-flowers/" },
-          { label: "U-Pick Orchard", href: "/u-pick-orchard/" },
         ],
       },
       {
