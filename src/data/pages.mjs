@@ -25,6 +25,20 @@
 // deleted outright (the orchard, honey, u-pick orchard), the /farm/ and /floral/ hubs were
 // opened, and the rest stay here on purpose with a reason recorded per page in the client
 // file noindex-register.md. Run `node verify.mjs` after any build before publishing.
+//
+// ⚠️ SECOND FILL PASS, 2026-08-25. MOST OF THE `stubs` ARRAY BELOW IS NOW DEAD CODE.
+// Nineteen of the twenty one stubs were filled to 1,000+ words each and live in the
+// src/data/fill-*.mjs modules behind src/data/filled.mjs. build.mjs skips any stub whose
+// slug appears there, so the entries below are superseded rather than rendered. They were
+// deliberately NOT deleted: this file has been byte-identical since 2026-08-21 apart from
+// this pass, and leaving the originals in place keeps the diff of the whole fill readable.
+// Only /our-work/ (a gallery with zero photographs) and /journal/ (a blog index with no
+// posts) are still live stubs, and both are still noindex because writing cannot fix either.
+// EDIT THE FILL MODULE, NOT THE STUB. A change made here to a filled page does nothing.
+//
+// The /visit/ hub was opened on 2026-08-25 once all seven of its children were filled.
+// All three hubs are now indexed, and build.mjs derives hub routes into sitemap.xml, so
+// opening or closing one is a single word here and nowhere else.
 
 // Card blurbs for the three finished service pages, so hub grids can list them without
 // content.mjs having to know about hubs.
@@ -119,11 +133,11 @@ export const hubs = [
   {
     slug: "/visit/",
     side: "farm",
-    draft: true,
+    draft: false,
     navLabel: "Visit",
     title: "Visit the Farm | Paulsen Farm and Floral off I-80, Iowa",
     description:
-      "A farm store, u-pick flowers, farm dinners, workshops and school groups on a Century Farm between Omaha and Des Moines, directly off Interstate 80.",
+      "A farm store, u-pick flowers, dinners, workshops and school groups, all planned for a Century Farm between Omaha and Des Moines, directly off Interstate 80.",
     eyebrow: "Visit",
     h1: "Visit the farm",
     sub: "Ten years out, this is a place you drive to. Here is what that looks like.",
@@ -146,6 +160,8 @@ export const hubs = [
 
 // Pages that exist so the structure is visible and reviewable. Title plus a short honest
 // paragraph or two. These are deliberately NOT full service pages.
+// SEE THE HEADER: all but two of these are superseded by src/data/fill-*.mjs and are no
+// longer rendered. Edit the fill module, not the stub.
 export const stubs = [
   // ---------- THE FARM: what we raise and grow ----------
   {
