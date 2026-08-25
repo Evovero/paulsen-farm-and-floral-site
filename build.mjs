@@ -739,11 +739,14 @@ function renderThankYou() {
 }
 
 // ---------- sitemap / robots / llms.txt ----------
-const baseIndexableRoutes = ["/", "/farm/", "/floral/", "/pastured-chicken/", "/farm-pickup/", "/wreaths-and-garland/", "/wedding-flowers/", "/event-flowers/", "/sympathy-flowers/", "/about/", "/century-farm/", "/nelson-farm/", "/contact/"];
-// A filled page joins the sitemap and llms.txt the moment its draft flag comes off, so
-// indexing one is a single word in its fill module and never another edit to this file.
+const baseIndexableRoutes = ["/", "/pastured-chicken/", "/farm-pickup/", "/wreaths-and-garland/", "/wedding-flowers/", "/event-flowers/", "/sympathy-flowers/", "/about/", "/century-farm/", "/nelson-farm/", "/contact/"];
+// Hubs and filled pages both join the sitemap and llms.txt the moment their draft flag
+// comes off, so opening either one is a single word in a small data file and never another
+// edit to this file. /farm/ and /floral/ used to be hardcoded above and are now derived,
+// which is what let the /visit/ hub open without a third place needing to know about it.
 const indexableRoutes = [
   ...baseIndexableRoutes,
+  ...hubs.filter((h) => !h.draft).map((h) => h.slug),
   ...filled.filter((p) => !p.draft).map((p) => p.slug),
 ];
 
@@ -788,6 +791,7 @@ production volume before setting prices. Weddings are quoted per event.
 - [Pastured chicken](${BASE}/pastured-chicken/): broilers raised on pasture, sold by the batch off the farm
 - [Pickup at the farm](${BASE}/farm-pickup/): how to order ahead and collect an order at the farm
 - [The floral studio](${BASE}/floral/): design work and seasonal flowers, grown here where the season allows
+- [Visit the farm](${BASE}/visit/): the farm store, u-pick flowers, dinners, workshops and school groups, all planned rather than open
 - [Wreaths and garland](${BASE}/wreaths-and-garland/): seasonal wreaths, garland and centerpieces, made in a limited fall run
 - [Wedding flowers](${BASE}/wedding-flowers/): floral design for weddings, delivered to the venue
 - [Event flowers](${BASE}/event-flowers/): floral design for showers, anniversaries, dinners and celebrations
