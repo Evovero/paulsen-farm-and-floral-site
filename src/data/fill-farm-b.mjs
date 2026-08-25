@@ -4,16 +4,17 @@
 //
 // VOICE RULE: see the header of fill-farm-a.mjs. Write it as intent, never as absence.
 // No "we do not have", no denials in the opening, and no talk about the website inside
-// the copy. Future tense is what keeps it honest.
+// the copy. Future tense is what keeps it honest. American spelling.
 //
 // Specific to this batch:
 //   /csa/            Describe how a CSA works and what we intend ours to be. Do NOT state
 //                    a share size, a box contents list or a season length as though it is
 //                    settled. General facts about how CSAs work are fine, ours are not.
-//   /farmers-markets/ NO NAMED MARKETS. Omaha, Atlantic, Winterset and Des Moines were all
-//                    floated on the 08-17 call and none were chosen. Naming one is a
-//                    promise to stand there. Two markets, likely a weeknight and a
-//                    Saturday, is the intent and is written as intent.
+//   /farmers-markets/ NO SPECIFIC NAMED MARKET until two are actually chosen. Omaha,
+//                    Atlantic, Winterset and Des Moines were all floated on the 08-17 call
+//                    and none were picked. Spencer approved describing the search by the
+//                    Omaha-to-Des Moines corridor generally, 2026-08-25, which is accurate
+//                    and useful without promising to stand at any particular stall.
 //   /wholesale/      No pricing and no terms, in any form. Chefs and buyers negotiate
 //                    directly. The page sells consistency and honesty about volume.
 export const fillFarmB = [
@@ -49,7 +50,7 @@ export const fillFarmB = [
             "Most CSAs run a stretch of about twenty weeks across the summer. Ours will be shaped by what this ground can actually carry rather than by a number copied off somebody else's farm, and we will say plainly what the season looks like before anyone commits.",
         },
         {
-          h3: "What the farm has, not a catalogue",
+          h3: "What the farm has, not a catalog",
           body:
             "A share is not an order form. Some weeks are heavy on greens, some are heavy on roots, and every week is decided by what is ready rather than what was requested. That is the trade, and for most households it turns out to be the good part.",
         },
@@ -160,11 +161,11 @@ export const fillFarmB = [
     eyebrow: "How to get it",
     h1: "Farmers markets, and the two we plan to stand at",
     seasonNote:
-      "Two markets a week is the plan. Which two is a decision we would rather make with your help.",
+      "Two markets a week, somewhere in the stretch between Omaha and Des Moines. Which two is a decision we would rather make with your help.",
     intro: [
       "We plan to sell at farmers markets. Two a week is the shape we have in mind, most likely one weeknight and one Saturday, which is about what a farm this size can hold up alongside everything else.",
       "Which two markets is genuinely still open, and it is a bigger decision than it looks. A market is a standing commitment for a whole season, so it is worth choosing carefully rather than signing up for whichever one has space.",
-      "We are not going to name markets before they are chosen, because putting a market on a page is a promise to be standing there every week. When they are settled you will find them here, and the list will hear first.",
+      "The markets we are looking at run from the Omaha side across to Des Moines, which is the stretch this farm sits in the middle of. We will name the two here once they are settled, because putting a market on a page is a promise to be standing there every week.",
     ],
     included: {
       h2: "What we intend to bring to a market table",
@@ -239,7 +240,7 @@ export const fillFarmB = [
       {
         q: "Which markets will you be at?",
         a:
-          "Not settled yet, and we would rather leave it blank than name one we have not committed to. Once two are chosen they will be listed here and sent to the list, along with the days and the season they run.",
+          "Still being decided. We are looking along the stretch between Omaha and Des Moines, which is the corridor this farm sits in the middle of. Once two are chosen they will be listed here and sent to the list with their days and season.",
       },
       {
         q: "Why only two markets?",
@@ -303,7 +304,7 @@ export const fillFarmB = [
         {
           h3: "A short list, in real volume",
           body:
-            "Better to supply three things a kitchen can rely on every week than fifteen that come and go. We would rather grow deep on a handful of crops that a chef actually builds around than offer a catalogue we cannot keep filled.",
+            "Better to supply three things a kitchen can rely on every week than fifteen that come and go. We would rather grow deep on a handful of crops that a chef actually builds around than offer a catalog we cannot keep filled.",
         },
         {
           h3: "One drive, not a supply chain",
