@@ -15,5 +15,6 @@
 import { fillFarmA } from "./fill-farm-a.mjs";
 import { fillFarmB } from "./fill-farm-b.mjs";
 import { fillFloral } from "./fill-floral.mjs";
+import { fillVisitA } from "./fill-visit-a.mjs";
 
-export const filled = [...fillFarmA, ...fillFarmB, ...fillFloral];
+export const filled = [...fillFarmA, ...fillFarmB, ...fillFloral, ...fillVisitA];
