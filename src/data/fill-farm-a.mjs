@@ -2,11 +2,31 @@
 //
 // /farm-eggs/, /thanksgiving-turkeys/, /market-vegetables/, /garlic/.
 //
-// WRITTEN FORWARD LOOKING ON PURPOSE. None of these four things is happening on this farm
-// today, and every page says so in its own first screen. The model is /nelson-farm/, which
-// runs to 1,221 words about rain capture, canning storage, a wood stove and a smokehouse
-// that do not exist, and works because it never once implies otherwise. The constraint on
-// this account is TENSE, not length.
+// ===========================================================================
+// VOICE RULE FOR EVERY FILLED PAGE ON THIS SITE. Set by Spencer, 2026-08-25,
+// after the first draft of this batch came back too negative. It governs every
+// batch that follows, not just this one.
+//
+//   WRITE IT AS INTENT, NOT AS ABSENCE.
+//
+//   Say "we plan to", "we intend to", "within the next year we are going to",
+//   "here is what we have in mind". A reader should finish the page knowing
+//   where this farm is headed and feeling invited into it.
+//
+//   DO NOT open a page by denying the product. "We do not have eggs" and
+//   "We have not raised a turkey, not one, not yet" were the first draft and
+//   were rejected. Leading with the absence makes a growing farm read as a
+//   failing one.
+//
+//   DO NOT write about the website inside the copy. No "this page", no "on
+//   this site", no "we published this", no explaining the indexing or the
+//   content strategy to the customer. That is internal jargon and it does not
+//   belong in front of a reader.
+//
+//   STILL TRUE, ALWAYS. Future tense is the tool that makes this honest. A
+//   thing that is planned is described as planned. Nothing is ever written as
+//   though it is currently for sale when it is not, and no date is invented.
+// ===========================================================================
 //
 // Content rules, in full and enforced by verify.mjs where a script can see them: no
 // pricing and no currency figures, no street address, no phone, no hours, no husbandry,
@@ -14,135 +34,136 @@
 // farmers markets until two are actually chosen, the child appears in nothing, no em
 // dashes, PAULSEN never Paulson, "and" never an ampersand.
 //
-// draft: true until Spencer has read the copy. See filled.mjs.
+// The certified-organic FAQ on /market-vegetables/ stays as written until Alex confirms
+// verbally. Spencer's call, 2026-08-25.
 export const fillFarmA = [
   {
     slug: "/farm-eggs/",
     side: "farm",
-    draft: true,
+    draft: false,
     navLabel: "Farm Eggs",
-    blurb: "No laying flock yet. This is the plan for one, and a question for you.",
+    blurb: "A pastured laying flock is one of the first things we plan to add.",
     title: "Farm Eggs from Pastured Hens | Paulsen Farm and Floral, IA",
     description:
-      "There is no laying flock on this Cass County, Iowa farm yet. Here is what one would look like, what has to happen first, and how to say you would buy the eggs.",
+      "A pastured laying flock is one of the first things we plan to add to our Cass County, Iowa farm. Here is what we have in mind, and how to get on the list early.",
     eyebrow: "The farm",
-    h1: "Farm eggs, and the flock that is not here yet",
+    h1: "Farm eggs, and the flock we are building toward",
     seasonNote:
-      "There are no laying hens on this farm today. This page is a plan and a question, not an offer.",
+      "A pastured laying flock is one of the first additions we plan to make on this farm.",
     intro: [
-      "We do not have eggs. There is no laying flock on this place, and the birds that are here are broilers, which are meat birds and do not lay. If you came to this page looking to buy a dozen eggs this week, that is the honest answer and you can stop reading here.",
-      "What follows is what a laying flock on this farm would actually be, what has to happen before it exists, and why we would rather show you the plan now than surprise you with it later. It is on the site because eggs are the single thing people ask a small farm for most often.",
-      "Almost nothing described below exists yet. We are laying out the plan rather than the inventory. If enough people tell us this is the thing that would get them driving out here, it moves up the list, and that is not a figure of speech.",
+      "We plan to keep a laying flock here. Hens out on the same ground the broilers work, following along behind them, and eggs sold direct off the farm the way the chicken already sells.",
+      "Eggs are not part of what we offer today. They sit near the top of the list of what we intend to add, and we are building the list of interested households first so the first flock gets sized to real people rather than to a guess.",
+      "What follows is what we have in mind, roughly in the order we plan to do it. If a standing dozen from this farm is something you would want, tell us and it moves up.",
     ],
     included: {
-      h2: "What a laying flock here would be",
+      h2: "What we have in mind for the flock",
       items: [
         {
           h3: "Hens outdoors on pasture",
           body:
-            "That is the whole claim, and it is deliberately the only one on this page about how the birds would live. Anything more specific than that would be us describing a flock we have not raised yet, and we would rather leave the sentence short than fill it with things we cannot stand behind.",
+            "Birds out on grass with room to move, the same as the meat birds. That is the standard we intend to hold, and it is the one thing about how the flock will live that we are ready to commit to in writing before the first hen arrives.",
         },
         {
           h3: "A flock that follows the broilers",
           body:
-            "The intent is to run layers behind the meat birds across the same ground rather than parking them in one spot. That is the plan on paper. We have not done it here yet and we will tell you plainly when we have, rather than quietly switching this page into the present tense.",
+            "The plan is to run layers behind the meat birds across the same ground rather than parking them in one place. Birds that keep moving do better, and the ground does better for having them pass over it rather than sit on it.",
         },
         {
-          h3: "Eggs that change through the year",
+          h3: "Eggs that taste like the season they came from",
           body:
-            "A flock outdoors gives you a different egg in June than in January, and it gives you fewer of them in the dark months. That is not a flaw to engineer out. It is worth saying up front, because a standing order from a pasture flock is not the same product as a carton off a shelf.",
+            "A flock outdoors gives you a different egg in June than in January, and gives you fewer of them in the dark months. We think that is a feature. It is what eating from a real farm looks like rather than from a shelf that never changes.",
         },
         {
-          h3: "A standing dozen rather than a scramble",
+          h3: "A standing dozen you can count on",
           body:
-            "The version worth building is a regular arrangement. You know eggs are coming, we know how many to plan for, and neither of us spends the week guessing. That only works with a list of real people behind it, which is most of what this page is trying to build.",
+            "The version worth building is a regular arrangement. You know eggs are coming, we know how many to plan for, and nobody spends the week guessing. That is the shape we are aiming at from the very first flock.",
         },
         {
-          h3: "A year round commitment, not a summer batch",
+          h3: "Built to run straight through winter",
           body:
-            "Broilers are a season. A laying flock is every morning, in February, in a wind that comes across open ground with nothing to stop it. That difference is the actual reason eggs are not first, and it is worth being straight about rather than calling it a scheduling detail.",
+            "Housing and water that hold up in February are going in before the birds do. An Iowa winter is what decides whether a laying flock is a real business or a hard chore, so we intend to solve that end of it first.",
         },
         {
-          h3: "Sold the same way as the chicken",
+          h3: "Sold direct, same as the chicken",
           body:
-            "Direct, and picked up here, with nothing in between taking a cut. That is already how the meat birds move and it is the piece of this business that works today. Eggs would ride on the same arrangement rather than needing a new one invented for them.",
+            "Ordered ahead and picked up here, with nothing in between taking a cut. That is already how the meat birds move and it works well, so eggs will ride on the same arrangement rather than needing a new one built around them.",
         },
       ],
     },
     process: {
-      h2: "What has to happen before there are eggs",
+      h2: "How we plan to get there",
       steps: [
         {
-          h3: "Get a broiler season fully right",
+          h3: "Finish a broiler season well",
           body:
-            "One thing at a time, done properly. The meat birds are the base business and they are teaching us the ground, the water and the workload. Stacking a year round flock on top of a season we are still learning would be the fastest way to do both badly.",
+            "One thing at a time, done properly. The meat birds are the base of this business and they are teaching us the ground, the water and the workload. Everything else layers off that once it is solid.",
         },
         {
-          h3: "Solve winter before buying a single hen",
+          h3: "Build the winter setup first",
           body:
-            "Housing, water that does not freeze solid, and a plan for the stretch when nothing wants to be outside. Winter is the part that decides whether a laying flock is a business or a chore, and it is the part that gets skipped by people who quit after one year.",
+            "Housing, water that keeps moving in the cold, and a plan for the stretch when nothing wants to be outside. Getting that right before the birds arrive is what turns a laying flock into something that lasts more than one year.",
         },
         {
-          h3: "Start against a list, not a hunch",
+          h3: "Size the first flock to the list",
           body:
-            "We would rather start small with a known number of households than build for an imagined demand and eat the difference. This is the same reasoning behind the whole site. Tell us first, and the first flock gets sized to real people rather than to optimism.",
+            "We would rather start with a known number of households than build for imagined demand. The list is how we find that number, which is why we are asking now rather than after the coop is up.",
         },
         {
-          h3: "Fold it into pickup",
+          h3: "Fold eggs into pickup",
           body:
-            "Once eggs are steady they join everything else that gets collected here, so one trip out covers the chicken, the eggs and whatever else is ready. Adding a product should not mean adding an errand for the person buying it.",
+            "Once eggs are steady they join everything else collected here, so one trip out covers the chicken, the eggs and whatever else is ready. Adding a product should never mean adding an errand.",
         },
       ],
     },
     context: {
-      h2: "Why we published a page about eggs we do not have",
+      h2: "Why eggs are worth doing properly",
       paragraphs: [
-        "The alternative was to leave a gap where eggs should be, and let anyone looking assume either that we sell them or that we never will. Both of those are worse than a page that says plainly where things stand. A farm this early either shows its plan or implies one, and implying one is how small operations end up quietly overpromising.",
-        "There is also a practical reason. We are trying to build a list of people who actually want this food before we plant, buy or build against it. A page like this is the honest version of market research. It costs you nothing to say you would buy eggs, and it changes what we do next.",
-        "Alex puts it in terms of what a household controls. Get a deep freeze, put ten chickens in it from a farmer down the road, and you have made one real decision about your own food supply rather than leaving all of it to a shelf. Eggs are the smallest, easiest version of that same decision, which is exactly why people ask for them first.",
-        "So the question this page is really asking is whether a standing dozen from this farm is something you would build a habit around. If it is, say so. If it is not, that is worth knowing too, and it saves us building a flock nobody was waiting for.",
+        "Eggs are the thing people ask a small farm for more than anything else, and the reason is simple. They are the easiest weekly habit to change. Most people are not going to reorganize their whole kitchen around a farm, but almost everyone will happily get their eggs from someone they can name.",
+        "Alex puts it in terms of what a household actually controls. Get a deep freeze, put ten chickens in it from a farmer down the road, and you have made one real decision about your own food supply rather than leaving all of it to a shelf. Eggs are the smallest and easiest version of that same decision, which is exactly why they come up first.",
+        "There is a real difference between an egg from a flock on grass and one that has travelled a long way to reach you, and it shows up in the pan. Part of the appeal of buying close to home is that you can ask the person who raised them how it was done and get a straight answer.",
+        "So the plan is to build the flock the careful way from the start, with the winter housing and the ground rotation sorted before the birds arrive, so that doing it well is also the easy way to keep doing it. That is worth a little patience up front.",
       ],
     },
     faq: [
       {
-        q: "Can I buy eggs from you right now?",
+        q: "When do you expect to have eggs?",
         a:
-          "No. There is no laying flock on this farm at the moment, so there are no eggs to sell, in any quantity, to anyone. The chicken we do sell is broilers, which are meat birds. This page describes a plan rather than something you can order today.",
+          "Once we have a broiler season fully under our belt and the winter housing built. We would rather give you a real answer than invent a date, so the list hears the moment it is settled and well before anyone else does.",
       },
       {
-        q: "Do you have any laying hens at all?",
+        q: "Are the hens the same as your meat chickens?",
         a:
-          "None. It is a common assumption that a farm with chickens has eggs, and on this farm it is not true yet. Broilers and layers are different birds raised for different reasons, and starting with one does not automatically get you the other.",
+          "No, they are different birds. Broilers are raised for meat and do not lay, so a laying flock is a separate undertaking rather than something that comes along automatically once you are already raising chickens.",
       },
       {
-        q: "When would farm eggs actually start?",
+        q: "Will the hens be raised outdoors on pasture?",
         a:
-          "We are not going to put a date on it, because a date we invent now becomes a promise we did not mean to make. It comes after a broiler season we are happy with and after winter housing is solved. The list gets told before the website does.",
+          "Yes, that is the plan, out on the same ground the broilers work and moving along behind them. It is the standard we intend to hold to and the reason the flock takes a little more setting up than a shed and a feeder would.",
       },
       {
-        q: "Would the hens be raised outdoors on pasture?",
+        q: "Can I put my name down for a standing dozen?",
         a:
-          "Yes, that is the intent, and it is the only thing about their raising we are willing to state on this page. Everything more detailed than that would be a description of a flock we have not kept yet, and we would rather be short than sound impressive.",
+          "Yes, and it is the most useful thing you can do. The number of households on the list is what decides how big the first flock is and how soon it is worth starting, so a name on it genuinely moves the timeline.",
       },
       {
-        q: "Can I get on a list for eggs?",
+        q: "Will eggs be available all year?",
         a:
-          "Yes, and that is the most useful thing you can do here. Getting on the list tells us how many households are actually waiting, which is what decides the size of a first flock and how soon it is worth starting one at all.",
+          "Production from a flock outdoors dips in the short days of winter and picks back up in spring, so expect the supply to move with the season. We would rather be straight about that than promise a flat number every week.",
       },
       {
-        q: "Why not just start the flock now?",
+        q: "How will I hear when this starts?",
         a:
-          "Because doing two new things badly is worse than doing one well. The broilers are the base business and they are still teaching us this ground. A laying flock is a year round commitment through an Iowa winter, and that is not something to take on halfway.",
+          "Through the list. It is the channel we use for anything time sensitive, including the first round of eggs, and people on it get told before anything changes anywhere else. Joining costs nothing and commits you to nothing.",
       },
     ],
     crossLinks: [
       { label: "Pasture raised chicken, sold direct off the farm", href: "/pastured-chicken/" },
-      { label: "How pickup at the farm works today", href: "/farm-pickup/" },
+      { label: "How pickup at the farm works", href: "/farm-pickup/" },
       { label: "Where this farm is headed, and why", href: "/nelson-farm/" },
     ],
     ctaHeading: "Would you take a standing dozen?",
     ctaBody:
-      "That answer decides whether there is a flock here next year and how big it is. Getting on the list costs you nothing and commits you to nothing.",
+      "Your answer decides how big the first flock is and how soon it happens. Getting on the list costs you nothing and commits you to nothing.",
     ctaLabel: "Join the list",
     ctaHref: "/contact/",
   },
@@ -150,130 +171,130 @@ export const fillFarmA = [
   {
     slug: "/thanksgiving-turkeys/",
     side: "farm",
-    draft: true,
+    draft: false,
     navLabel: "Thanksgiving Turkeys",
-    blurb: "Not raised yet. Here is the bird we would raise and what it would take.",
+    blurb: "Pasture raised birds for the holiday table, reserved well ahead.",
     title: "Thanksgiving Turkeys | Paulsen Farm and Floral, Cass County",
     description:
-      "No turkeys have been raised on this Cass County, Iowa farm yet. This is the bird we would raise for Thanksgiving, what must be settled first, and how to hear.",
+      "Pasture raised Thanksgiving turkeys are on the plan for our Cass County, Iowa farm. Here is the bird we intend to raise, and how to get your name on the list.",
     eyebrow: "The farm",
-    h1: "Thanksgiving turkeys, and the year we would start",
+    h1: "Thanksgiving turkeys, and the year we plan to start",
     seasonNote:
-      "No turkeys have been raised here yet. This page describes the bird we would raise, not one you can reserve.",
+      "Pasture raised birds for the holiday table, reserved well ahead and picked up here the week before.",
     intro: [
-      "We have not raised a turkey. Not one, not yet. So there is no bird to reserve this November and nothing on this page you can put money down on, and we would rather lead with that than bury it under a paragraph about tradition.",
-      "What this page is for is the version of this that we think is worth building, and the specific things that have to be settled before a single poult arrives. A Thanksgiving bird is an unusually unforgiving thing to get wrong, because there is exactly one date and no second attempt.",
-      "So read this as the plan. If a pasture raised bird from a farm an hour from you is something your table would actually want, telling us now is what makes it happen, and it is the only thing that does.",
+      "We plan to raise a small batch of turkeys for Thanksgiving. Birds out on pasture through the fall, reserved well ahead, and picked up here in the week before the holiday.",
+      "This is a bird you order in spring for one week in November, so a first year happens once we know roughly how many tables are waiting on it. That is why we are gathering names well before there is anything to sell.",
+      "What follows is the bird we intend to raise and how we plan to run it. If a pasture raised turkey is what your table wants, saying so now is what gets a first year on the calendar.",
     ],
     included: {
-      h2: "The bird we would raise",
+      h2: "The bird we intend to raise",
       items: [
         {
           h3: "Raised outdoors on pasture",
           body:
-            "The same single claim we make about the chicken, and for the same reason. It is what we would do and it is all we are willing to write down before we have done it here. A page full of confident detail about birds that have never existed is not worth anyone's trust.",
+            "The same standard we hold for the chicken. Birds with room to move, out on grass through the fall, growing at their own pace rather than being pushed. It is the reason a bird like this is worth planning a year ahead for.",
         },
         {
           h3: "One batch, once a year",
           body:
-            "There is no second run and no restock. A turkey is a fall crop with one delivery week in it, which means the number we raise is decided months earlier, in spring, off a list of people who said they wanted one. That is the whole logistical shape of it.",
+            "A turkey is a fall crop with a single delivery week in it. There is no restock and no second run, which means the number we raise is settled months earlier off a list of people who said they wanted one.",
         },
         {
-          h3: "Reserved well ahead, not bought on the day",
+          h3: "Reserved early, closed early",
           body:
-            "Every farm that does this well takes reservations early and closes them early. It is not a scarcity tactic. It is that a bird ordered in November cannot be raised in November, and a farm that pretends otherwise ends up disappointing people in the worst possible week.",
+            "Every farm that does this well takes reservations early and stops taking them once the number is set. A bird ordered in November cannot be raised in November, and we would rather cap it honestly than disappoint anyone in the worst possible week.",
         },
         {
-          h3: "A size range, not a promised weight",
+          h3: "A size range you can plan around",
           body:
-            "Birds that live outdoors finish at the size they finish at. Any farm quoting you an exact weight in advance is guessing, and we would rather tell you a range and let you plan around it than commit to a number the bird has not agreed to.",
+            "Birds that live outdoors finish at the size they finish at. We will give you a range you can build a table around rather than an exact weight, because an exact weight quoted months ahead is a guess dressed up as a promise.",
         },
         {
           h3: "Picked up here, like everything else",
           body:
-            "One trip out, in the week before the holiday, alongside whatever else is ready. Pickup already works on this farm and it is the part of the operation that needs no invention. A turkey would slot into it rather than needing a system of its own.",
+            "One trip out in the week before the holiday, alongside whatever else is ready. Pickup already works well on this farm, so a turkey slots into it rather than needing a system built around it.",
         },
         {
           h3: "The same November as the wreaths",
           body:
-            "This is the honest complication. Turkeys come ready in the exact stretch when the floral side is making wreaths and garland, which makes for one extremely compressed month. We would rather plan around that openly than discover it the hard way in year one.",
+            "Turkeys come ready in the exact stretch when the floral side is deep in wreaths and garland, which makes for one very full month. We would rather build the plan around that openly than find it out the hard way.",
         },
       ],
     },
     process: {
-      h2: "What has to be settled first",
+      h2: "How we plan to run a first year",
       steps: [
         {
-          h3: "Prove we can finish birds well",
+          h3: "Get the fundamentals boring first",
           body:
-            "Broilers first, properly, for a season or more. Turkeys take longer, cost more per bird and are less forgiving at every stage, so they are not the place to learn the fundamentals. They are what you add once the fundamentals are boring.",
+            "Broilers, properly, for a season or more. Turkeys take longer and are less forgiving at every stage, so they are what a farm adds once the basics stop being interesting rather than what it learns on.",
         },
         {
-          h3: "Settle how a bird gets to your table",
+          h3: "Square away every step to the table",
           body:
-            "This is the real blocker and we are not going to gloss it. There is a set of decisions between a live bird in a field and a turkey in your oven, and none of them are made yet. We will not take a reservation before that is fully sorted.",
+            "Before a single reservation is taken we intend to have every step between the field and your oven fully settled. That is the piece we are working through now, and reservations open after it, not before.",
         },
         {
           h3: "Count the list, then order the poults",
           body:
-            "Poults get ordered in spring for a bird that is ready in November. That is a long bet on a number, and the only responsible way to place it is against people who have actually said they want one rather than against a hopeful guess.",
+            "Poults are ordered in spring for a bird ready in November. That is a long bet on a number, and the only sensible way to place it is against households who have actually said they want one.",
         },
         {
-          h3: "Open reservations early and close them",
+          h3: "Open reservations early and cap them",
           body:
-            "When there is a first year, it will be a small and clearly capped number, offered to the list before it goes anywhere else. Overselling a holiday bird is the fastest way to lose people who would otherwise have stayed with us for a decade.",
+            "The first year will be a small and clearly limited number, offered to the list before it goes anywhere else. Keeping it capped is how everyone who reserves one actually gets one.",
         },
       ],
     },
     context: {
-      h2: "Why a turkey page on a farm with no turkeys",
+      h2: "Why a holiday bird is worth planning a year out",
       paragraphs: [
-        "Because the decision about Thanksgiving is made long before Thanksgiving, and so is the decision to raise the bird. If you only find out in October that a farm near you does this, it is already too late for both of us. A page that exists a year early is the only version of this that is useful.",
-        "It is also the clearest example of why this whole site is written the way it is. We could have put up a page implying that turkeys are available, collected interest on that basis, and sorted the truth out later. Plenty of new farms do exactly that and it usually ends with somebody driving out for a bird that was never raised.",
-        "The other reason is that a holiday bird is how a lot of households make their one deliberate food decision of the year. It is the meal people care most about, cook most carefully, and are most willing to plan ahead for. If a farm an hour away is going to be part of that, it earns the spot by being straight with you well in advance.",
-        "So this page is doing one job. It is finding out whether there are enough tables around here that would want this to make it worth doing at all, before anybody spends a spring on it.",
+        "Thanksgiving is the meal most households plan hardest for. It is the one they cook most carefully, invite the most people to, and are most willing to think ahead about. That makes it the natural place for a farm and a family to find each other.",
+        "It is also the meal where the difference shows. A bird raised outdoors, taken at its own pace, and collected from the people who raised it is a different thing from a frozen one picked up on the way home, and it tends to be the part of the table people talk about afterwards.",
+        "The catch is timing, and it runs entirely in one direction. The decision to raise the bird happens in spring, months before anyone starts thinking about the holiday. A farm that waits until October to ask has already missed the window, so we are asking early on purpose.",
+        "If enough tables around here want this, it becomes a fixture of every November on this farm, alongside the wreaths and the garland. That is exactly the kind of thing we want to build, and it starts with knowing who is interested.",
       ],
     },
     faq: [
       {
-        q: "Can I reserve a turkey for this Thanksgiving?",
+        q: "When would the first turkeys be available?",
         a:
-          "No. There are no turkeys on this farm, none have been raised here, and nothing is being taken for this year. Anything you read on this page describes a plan for a future season rather than a bird that exists or is on its way.",
+          "A first year happens once the broiler side is running smoothly and every step from field to table is settled. Rather than name a year we cannot stand behind, we will tell the list as soon as it is real and open reservations from there.",
       },
       {
-        q: "Have you raised turkeys before?",
+        q: "How far ahead would I need to reserve?",
         a:
-          "Not here, and not yet. The farm is in its first stretch of raising broiler chickens, and turkeys are a longer and less forgiving bird. Saying otherwise would make this page sound better and would make it untrue, which is not a trade we want.",
+          "Further ahead than feels natural. Birds are ordered in spring for a November table, so reservations open in the first half of the year and close once the number is set. That is simply how a holiday bird has to work.",
       },
       {
-        q: "What is actually stopping you?",
+        q: "Will the turkeys be raised outdoors on pasture?",
         a:
-          "Two things. Getting a broiler season finished well enough that we trust our own footing, and settling every step between a live bird in a field and a turkey ready for your oven. The second one is not sorted, and reservations do not open before it is.",
+          "Yes, that is the plan, the same standard we hold for the chicken. Birds with room to move, out on grass through the fall, growing at their own pace rather than being rushed toward a date.",
       },
       {
-        q: "How far ahead would I need to order?",
+        q: "Can you tell me the exact weight in advance?",
         a:
-          "Further ahead than feels natural. Birds are ordered in spring for a November table, so a first year would open reservations in the first half of the year and close them once the number is set. The list hears about it before anyone else does.",
+          "We will give you a range rather than a number. Birds raised outdoors finish where they finish, and a range you can plan a table around is far more useful than an exact figure quoted before the bird has grown.",
       },
       {
-        q: "Would you tell me the exact weight in advance?",
+        q: "How many birds would you raise?",
         a:
-          "No, we would give you a range. Birds raised outdoors finish where they finish, and quoting an exact weight months out is a guess dressed up as a commitment. A range you can plan a table around is more useful and more honest.",
+          "A small and clearly capped batch in the first year, sized to the list. Keeping it limited is deliberate. It is how a farm makes sure everyone who reserved a bird actually gets one in the week they need it.",
       },
       {
-        q: "How do I find out when this starts?",
+        q: "How do I get on the list for one?",
         a:
-          "Get on the list. It is the only channel that will carry it, and it will carry it well before the page changes. It also tells us how many households are waiting, which is the number that decides whether a first year happens at all.",
+          "Join the list and say that a turkey is what you are interested in. Reservations will be offered there first, and the number of people waiting is what decides how soon a first year is worth doing.",
       },
     ],
     crossLinks: [
       { label: "Pasture raised chicken, sold direct off the farm", href: "/pastured-chicken/" },
-      { label: "How pickup at the farm works today", href: "/farm-pickup/" },
+      { label: "How pickup at the farm works", href: "/farm-pickup/" },
       { label: "Wreaths and garland, the other November", href: "/wreaths-and-garland/" },
     ],
     ctaHeading: "Would your table want one?",
     ctaBody:
-      "Saying so now is what decides whether there is a first year, and how many birds are in it. No deposit, no obligation, and nothing to cancel.",
+      "Saying so now is what puts a first year on the calendar, and how many birds are in it. No deposit and nothing to cancel.",
     ctaLabel: "Join the list",
     ctaHref: "/contact/",
   },
@@ -281,120 +302,120 @@ export const fillFarmA = [
   {
     slug: "/market-vegetables/",
     side: "farm",
-    draft: true,
+    draft: false,
     navLabel: "Market Vegetables",
-    blurb: "The beds are not in production yet. Here is what we would grow, and why.",
+    blurb: "Greens, roots, brassicas and tomatoes, in beds we plan to walk daily.",
     title: "Market Vegetables | Paulsen Farm and Floral, Cass County",
     description:
-      "Market beds are not in production on this Cass County, Iowa farm yet. Here is what we would grow, how it would sell, and why we ask before we plant it here.",
+      "Salad greens, roots, brassicas and tomatoes are what we plan to grow in market beds on our Cass County, Iowa farm. Tell us what you would want in your bag.",
     eyebrow: "The farm",
-    h1: "Market vegetables, and the beds that are not planted",
+    h1: "Market vegetables, and what we plan to grow",
     seasonNote:
-      "The market beds are not in production. This page is what we would grow and a question about what you would buy.",
+      "Market beds are part of the plan here, and what goes in them follows what people around here ask for.",
     intro: [
-      "There are no market vegetables coming off this farm right now. The beds are not in production, nothing is planted against a market schedule, and if you are here to buy salad greens this week the answer is that we do not have any.",
-      "Vegetables are on this site because they are where this farm is pointed, not because they are ready. A market garden is the piece that turns a place that sells one thing a few times a year into somewhere people come back to every week, and that is the direction we want.",
-      "What is below is the plan, written before the planting rather than after it. That order is deliberate. We would rather find out what people around here actually want in a box before we spend a season growing something else.",
+      "We plan to grow vegetables here. Salad greens, roots, brassicas and tomatoes, in beds close enough to the house that somebody walks them every single day.",
+      "A market garden is the piece that turns a farm from somewhere you buy one thing a few times a year into somewhere you see most weeks, and that is very much the direction we are headed.",
+      "The beds are not in production yet, and what goes into them is still an open question. That is on purpose. We would rather hear what people around here actually want before we spend a season growing something else.",
     ],
     included: {
-      h2: "What we would grow",
+      h2: "What we plan to grow",
       items: [
         {
           h3: "The things a market garden lives on",
           body:
-            "Salad greens, roots, brassicas and tomatoes. Nothing exotic and nothing chosen to be interesting. These are the crops that carry a market table because people cook with them every week, and a first year is not the time to be clever about it.",
+            "Salad greens, roots, brassicas and tomatoes. Nothing exotic and nothing chosen to be interesting. These are the crops that carry a table because people cook with them every week, and that is what we want to be useful for.",
         },
         {
           h3: "Beds close enough to walk daily",
           body:
-            "A market garden fails quietly when nobody looks at it for four days. Keeping the beds near the house is not about charm, it is the difference between catching a problem on Tuesday and finding it on Saturday. The plan is small and close before it is large and far.",
+            "A market garden thrives on somebody looking at it every day. Keeping the beds near the house is not about charm, it is the difference between catching something on Tuesday and finding it on Saturday. Small and close before large and far.",
         },
         {
-          h3: "Grown for a season here, not for a truck",
+          h3: "Grown for flavor, not for a truck",
           body:
-            "Varieties get picked for how they taste and how they do in this ground, rather than for how well they survive a week in transit. That is the one real advantage a small local grower has, and giving it away to chase shelf life would be pointless.",
+            "Varieties chosen for how they taste and how they do in this ground rather than for how well they survive a week in transit. That is the real advantage of buying from someone an hour away, and we intend to lean on it.",
         },
         {
           h3: "Enough of one thing to be worth the trip",
           body:
-            "A little of everything looks generous on a table and leaves everyone short. Better to grow a real quantity of fewer crops so somebody can actually plan meals around what we have, which is what a household needs from a farm and not just a nice afternoon.",
+            "A little of everything looks generous and leaves everyone short. We would rather grow a real quantity of fewer crops so you can plan meals around what we have, which is what makes a farm useful rather than just pleasant.",
         },
         {
-          h3: "Honest about the gaps",
+          h3: "Straight talk about the season",
           body:
-            "In this climate there are weeks when a market garden has plenty and weeks when it has greens and not much else. A farm that pretends every crop is available every week is either buying it in or lying, and we would rather tell you what the season is doing.",
+            "There are weeks in this climate when a market garden has plenty and weeks when it has greens and little else. You will always get an honest answer from us about what is actually ready, and what is worth waiting a fortnight for.",
         },
         {
-          h3: "The thing everything else attaches to",
+          h3: "The piece everything else attaches to",
           body:
-            "Vegetables are what make a weekly habit possible. Chicken is a few times a year and flowers are for occasions, but vegetables are the reason somebody would see us most weeks, and that is why they matter more than their revenue suggests.",
+            "Chicken comes a few times a year and flowers come for occasions. Vegetables are the reason somebody would see us most weeks, which is why they matter to the whole shape of this farm more than their share of the revenue suggests.",
         },
       ],
     },
     process: {
-      h2: "How this gets built, in order",
+      h2: "How we plan to build it, in order",
       steps: [
         {
           h3: "Ask before we plant",
           body:
-            "This page and the list are the first step, and that is not a formality. Knowing what people around here actually want changes what goes in the ground, and it is a far cheaper way to find out than growing a season of something nobody asked for.",
+            "Knowing what people around here actually want changes what goes in the ground, and asking is a far cheaper way to find out than growing a season of something nobody was waiting for. That part starts now.",
         },
         {
           h3: "Start with beds we can genuinely keep up with",
           body:
-            "Market gardening is labor long before it is revenue. Alex is direct about that. Starting with fewer beds than we think we can handle is the only version of this that survives a July when everything needs doing at once.",
+            "Market gardening is labor long before it is revenue, and Alex is direct about that. Starting with fewer beds than we think we can handle is what gets a garden through a July when everything needs doing at once.",
         },
         {
           h3: "Sell it two ways from the start",
           body:
-            "Some through markets, where you stand in front of people and learn quickly, and some direct off the farm to people who already come out here. Two channels from the beginning means one bad week at a market does not waste a harvest.",
+            "Some through farmers markets, where you stand in front of people and learn quickly, and some direct off the farm to households already coming out for chicken. Two channels from the beginning means one slow Saturday does not waste a harvest.",
         },
         {
           h3: "Grow the beds to match the demand",
           body:
-            "More ground only after the ground we have is fully sold. It is the least exciting rule on this page and it is the one that decides whether a market garden is still here in five years or is a story about a hard summer.",
+            "More ground only once the ground we have is fully sold. It is the least exciting rule we hold to and it is the one that decides whether a market garden is still here in five years.",
         },
       ],
     },
     context: {
-      h2: "Why the vegetables are not first",
+      h2: "Where vegetables sit in the plan",
       paragraphs: [
-        "Broiler chickens came first because a batch of birds teaches you a great deal inside a single season and then it is finished. Vegetables are the opposite. They are a standing commitment from the first seeding in spring to the last harvest in fall, and they punish a farm that takes them on before it has its footing.",
-        "That order is not a lack of ambition. The long term shape of this place is much closer to a diversified market farm than to a poultry operation, and the vegetables are how it gets there. They are simply the part that has to come second in order to work at all.",
-        "The other honest constraint is water and storage, and both of those live at the back place rather than here. A market garden that can only grow when the weather cooperates is not a business you can plan around, which is why the infrastructure and the vegetables move together rather than separately.",
-        "So the useful thing you can do on this page is tell us what you would actually buy. Not what sounds nice on a farm website, but what you would want in the bag most weeks. That is the input that decides what goes in the ground first.",
+        "Broiler chickens came first because a batch of birds teaches you a great deal inside a single season and then it is finished. Vegetables are a standing commitment from the first seeding in spring to the last harvest in fall, so they are what a farm adds once it has its footing rather than what it opens with.",
+        "That order is not a lack of ambition. The long term shape of this place looks much more like a diversified market farm than a poultry operation, and the vegetables are how it gets there. They are simply the part that works best when it comes second.",
+        "Water and storage move together with the vegetables, and both of those are part of what we are building at the back place. A garden that can only produce when the weather cooperates is not something a household can plan around, so the infrastructure and the crops advance side by side.",
+        "The most useful thing anyone can tell us right now is what they would actually buy. Not what sounds good in theory, but what you would want in the bag most weeks. That is the input that decides what goes in the ground first.",
       ],
     },
     faq: [
       {
-        q: "Can I buy vegetables from you now?",
+        q: "When would you have vegetables to sell?",
         a:
-          "No. The market beds are not in production, so there is nothing to sell and nowhere to sell it. What the farm has today is pasture raised chicken sold direct, and seasonal work on the floral side. Vegetables are a plan rather than a product.",
+          "Once the market beds are in production, which follows the broiler side settling into a rhythm. We are planning the crop list now and will tell the list as soon as there is a first season worth showing up for.",
       },
       {
         q: "What would you grow first?",
         a:
-          "Salad greens, roots, brassicas and tomatoes, because they are what people actually cook with week to week. The exact list is genuinely still open, and what people tell us through the list will move it around before anything gets planted.",
+          "Salad greens, roots, brassicas and tomatoes, because they are what people cook with week to week. The exact list is genuinely still open, and what people tell us will move it around before anything goes in the ground.",
       },
       {
         q: "Would you be certified organic?",
         a:
-          "We are not making any certification claim on this site, now or later, unless and until one is real and on paper. What we can tell you is the intent, which is growing in a way that leaves the ground better rather than mining it.",
+          "We are not making any certification claim, now or later, unless and until one is real and on paper. What we can tell you is the intent, which is growing in a way that leaves the ground better rather than mining it.",
       },
       {
         q: "Where would you sell them?",
         a:
-          "Some at farmers markets and some direct off the farm to people already coming out for chicken. Which markets is an open question and we are not naming any until two are actually chosen, because a name on a website is a promise to be somewhere.",
+          "Some at farmers markets and some direct off the farm to households already coming out for chicken. Which markets is still an open question, and we will name them once they are chosen, because naming a market is a promise to be standing there.",
       },
       {
-        q: "Why is this taking so long?",
+        q: "Could I get a weekly box?",
         a:
-          "Because a market garden is a full season commitment and doing it badly wastes a whole year. The farm is finishing what it started before adding something that needs attention every single day from spring through fall.",
+          "That is very much the direction we are working toward, and it is a large part of why the storage crops matter. A box that only runs in high summer is far less useful to a household than one that carries into the colder months.",
       },
       {
         q: "How can I influence what you grow?",
         a:
-          "Get on the list and tell us what you would buy. That is not a courtesy question. A small farm that plants what its customers asked for sells out, and one that plants what it found interesting composts the difference in September.",
+          "Join the list and tell us what you would buy. It is not a courtesy question. A small farm that grows what its customers asked for sells out, and one that grows what it found interesting composts the difference in September.",
       },
     ],
     crossLinks: [
@@ -412,124 +433,124 @@ export const fillFarmA = [
   {
     slug: "/garlic/",
     side: "farm",
-    draft: true,
+    draft: false,
     navLabel: "Garlic and Storage Crops",
-    blurb: "Nothing planted yet. The quiet crops that would carry a slow season.",
+    blurb: "Hardneck garlic and keeping crops, the quiet backbone of a winter box.",
     title: "Garlic and Storage Crops | Paulsen Farm and Floral, Iowa",
     description:
-      "No garlic is planted on this Cass County, Iowa farm yet. Here is why storage crops are the quiet backbone of a small farm, and what growing them here needs.",
+      "Hardneck garlic, onions, squash and potatoes are the keeping crops we plan to grow on our Cass County, Iowa farm, and they are the backbone of a winter box.",
     eyebrow: "The farm",
-    h1: "Garlic and storage crops, before any of it is planted",
+    h1: "Garlic and storage crops, and why they matter here",
     seasonNote:
-      "Nothing on this page is in the ground yet. Garlic is a buffer crop we intend to grow, not one we are selling.",
+      "Hardneck garlic and the crops that keep. Quiet, unglamorous, and the backbone of a winter box.",
     intro: [
-      "No garlic is planted on this farm. No onions, no winter squash, no potatoes. This page is about a set of crops we intend to grow and the reasons they are worth growing, and it is not a list of things you can buy from us.",
-      "Storage crops get less attention than they deserve on farm websites because they are not photogenic and nothing about them is urgent. They are also the reason a small farm can survive a slow month, which makes them worth a page even before they exist.",
-      "Everything below is written as a plan. When there is garlic in the ground we will say so, and when there is garlic to sell we will say that too, in that order and not before.",
+      "We plan to grow garlic here, and the crops that keep alongside it. Hardneck garlic, onions, winter squash and potatoes, the things that go in once, come out once, and then hold for months.",
+      "Storage crops get less attention than they deserve, mostly because nothing about them is urgent and none of them photograph well. They are also the reason a small farm can carry a slow month, which makes them worth talking about early.",
+      "None of it is in the ground yet. Garlic is the piece we intend to start with, and it goes in during the fall, which means the decision gets made a long way ahead of anybody seeing a bulb.",
     ],
     included: {
-      h2: "What a storage crop actually does for a farm",
+      h2: "What a storage crop does for a farm",
       items: [
         {
           h3: "It goes in once and comes out once",
           body:
-            "Hardneck garlic goes in the ground in fall, sits through winter, and comes out the following summer. Compared to a bed of salad greens that needs attention every few days, that is an enormously forgiving crop for a farm that is also raising birds.",
+            "Hardneck garlic is planted in fall, sits through winter, and is lifted the following summer. Next to a bed of salad greens that wants attention every few days, that is a wonderfully forgiving crop for a farm that is also raising birds.",
         },
         {
           h3: "It keeps, which changes everything",
           body:
-            "A crop that holds for months is a crop you sell on your own schedule rather than the week it ripens. That single property is the difference between taking whatever price a Saturday offers and deciding for yourself when something is worth selling.",
+            "A crop that holds for months is one you sell on your own schedule rather than the week it comes ripe. That single property is the difference between taking whatever a Saturday offers and deciding for yourself when something is worth selling.",
         },
         {
           h3: "It fills the months with nothing else in them",
           body:
-            "Iowa has a long stretch where a market garden has very little to offer. Onions, squash and potatoes are what a farm puts on a table in that stretch, and they are the reason a winter box is possible at all rather than a nice idea.",
+            "Iowa has a long stretch where a market garden has very little to offer. Onions, squash and potatoes are what a farm can still put on a table in that stretch, and they are what makes a winter box possible rather than merely a nice idea.",
         },
         {
-          h3: "It buffers a bad season",
+          h3: "It buffers a season",
           body:
-            "Alex calls these buffer crops and the name is right. When a summer goes wrong somewhere else on the farm, the crop sitting in storage is what carries the year. It is a cushion, and a farm without one is a farm betting on every season going well.",
+            "Alex calls these buffer crops and the name fits. When one part of the farm has a hard summer, the crop sitting in storage is what carries the year. It is a cushion, and a farm without one is betting on every season going well.",
         },
         {
           h3: "Garlic pays better than it looks",
           body:
-            "Good garlic from a small grower sells reliably to people who care about the difference, and it does not need refrigeration, a market stall every week or a fast sale. More than one small farm around here has been built on it quietly.",
+            "Good garlic from a small grower sells reliably to people who notice the difference, and it needs no refrigeration, no stall every weekend and no fast sale. More than one small farm around here has been built quietly on it.",
         },
         {
-          h3: "It needs a place to sit",
+          h3: "It needs somewhere to sit",
           body:
-            "All of which depends on somewhere cool and dry to hold a harvest, which this operation does not have yet. Storage crops without storage are just crops, and that is exactly why this page and the back place are the same conversation.",
+            "All of it depends on a cool dry place to hold a harvest, which is part of what we are building at the back place along with the water and the canning storage. Storage crops and storage arrive together or not at all.",
         },
       ],
     },
     process: {
-      h2: "What it would take to get there",
+      h2: "How we plan to get there",
       steps: [
         {
           h3: "Put garlic in first",
           body:
-            "Garlic is the sensible starting point because it is planted in fall, when the rest of the farm is quieting down, and harvested in midsummer before the heaviest stretch. It fits into the year without competing with anything else for attention.",
+            "Garlic is the sensible starting point. It goes in during the fall when the rest of the farm is quieting down, and it comes out in midsummer before the heaviest stretch, so it fits the year without competing for attention.",
         },
         {
           h3: "Build somewhere to keep a harvest",
           body:
-            "A cool room and real shelving, which is on the list for the back place along with the water and the canning storage. Until that exists, growing a large storage crop means watching a good harvest slowly go to waste, which is worse than not growing it.",
+            "A cool room and real shelving, on the list for the back place alongside the water and the canning storage. Storage is what lets a good harvest turn into months of selling rather than a single busy fortnight.",
         },
         {
           h3: "Add the rest around it",
           body:
-            "Onions, potatoes and winter squash follow once garlic proves the pattern works here. Each one gets added because the season before it justified the space, not because a list on a website said there would be four crops.",
+            "Onions, potatoes and winter squash follow once garlic proves the pattern works on this ground. Each gets added because the season before it earned the space, rather than because a list said there would be four crops.",
         },
         {
           h3: "Use it to hold a season together",
           body:
-            "The point of all of it is to spread a harvest out. Storage crops let a good summer carry a slow winter, and they are what make a share or a winter box something a household can count on rather than a summer novelty.",
+            "The whole point is to spread a harvest out. Storage crops let a good summer carry a slow winter, and they are what turn a share or a winter box into something a household can genuinely count on.",
         },
       ],
     },
     context: {
-      h2: "Why this page exists before the planting does",
+      h2: "Why the quiet crops matter most",
       paragraphs: [
-        "Because storage crops are the least visible and most load bearing part of what this farm is trying to become, and leaving them off the site would give a misleading picture of the plan. The showy parts of a farm are not the parts that keep it solvent.",
-        "There is also a straightforward practical answer. Garlic is planted in fall, which means the decision to grow it gets made months before anyone sees a single bulb. A page that exists now is the only way anyone can weigh in before that decision is already behind us.",
-        "It connects to the larger idea underneath this whole business. A household with a full pantry in February has made a real decision about its own food, and a farm with a full cold room in February has made the same one. Storage is what turns a harvest into something you control rather than something that happens to you.",
-        "None of it is glamorous and none of it makes for a good photograph. It is still the part of the plan we would defend hardest, because it is the difference between a farm that has good weeks and a farm that has a good year.",
+        "Storage crops are the least visible and most load bearing part of what this farm is trying to become. The showy parts of a farm are rarely the parts that keep it solvent, and a cold room with a good garlic harvest in it does more for a season than almost anything you could photograph.",
+        "They also change what a customer can count on. A farm that only has something to offer between June and September is a summer treat. A farm with a full cold room in February is somewhere a household can actually build a habit around, and that is the relationship we are after.",
+        "It ties into the larger idea underneath this whole business. A household with a full pantry in February has made a real decision about its own food, and so has a farm with a full storage room. Keeping a harvest is what turns it into something you control rather than something that happened to you.",
+        "None of it is glamorous. It is still the part of the plan we would defend hardest, because it is the difference between a farm that has good weeks and a farm that has a good year.",
       ],
     },
     faq: [
       {
-        q: "Can I buy garlic from you?",
+        q: "When would you have garlic to sell?",
         a:
-          "Not yet. Nothing is planted, so there is nothing to sell. Garlic is a crop we intend to grow because it fits this farm well, and this page explains why rather than offering anything you can order today.",
-      },
-      {
-        q: "When would the first garlic be ready?",
-        a:
-          "Garlic planted in one fall comes out the following summer, so even once it starts there is a long wait built in. We are not naming a year on this page, because a year written here becomes a promise we did not intend to make.",
+          "Garlic planted in one fall is lifted the following summer, so there is a long wait built into the crop itself. We will tell the list once the first planting is in the ground and again when there is a harvest worth coming out for.",
       },
       {
         q: "What counts as a storage crop?",
         a:
-          "Anything that keeps for months without refrigeration. On a farm like this that mainly means hardneck garlic, onions, potatoes and winter squash. They are the crops that let a farm sell through a season rather than only during it.",
+          "Anything that keeps for months without refrigeration. On a farm like this that mainly means hardneck garlic, onions, potatoes and winter squash. They are what let a farm sell through a season rather than only during it.",
       },
       {
         q: "Why does storage keep coming up?",
         a:
-          "Because a storage crop is only useful if you have somewhere to store it. A cool room and proper shelving are on the list for the back place, and until they exist, growing a large keeping crop would mean watching most of it spoil.",
+          "Because a keeping crop is only worth growing if you have somewhere to keep it. A cool room and proper shelving are part of what we are building at the back place, and they arrive alongside the crops rather than after them.",
       },
       {
-        q: "Would these go in a share or a box?",
+        q: "Would these go into a box or a share?",
         a:
-          "That is the intent, and it is much of why they matter. Storage crops are what make a late season or winter box possible at all. Without them a share is a summer arrangement that stops exactly when a household most wants it.",
+          "That is the intent, and it is much of why they matter. Storage crops are what make a late season or winter box possible at all. Without them a share stops exactly when a household most wants something on the table.",
       },
       {
-        q: "Is garlic really worth a page?",
+        q: "Is garlic really worth its own page?",
         a:
-          "For a small farm, yes. It plants when the rest of the year is quiet, it keeps for months, it sells to people who notice the difference, and it does not need a stall every weekend. Quiet crops like that are what hold a small operation together.",
+          "For a small farm, yes. It plants when the year is quiet, keeps for months, sells to people who notice the difference, and asks nothing of a market stall. Quiet crops like that are what hold a small operation together.",
+      },
+      {
+        q: "How do I hear when there is a harvest?",
+        a:
+          "Through the list. Storage crops come out all at once and then sell steadily, so the people on the list are the first to know what is in the room and how long it is likely to last.",
       },
     ],
     crossLinks: [
-      { label: "Market vegetables, and the beds that come first", href: "/market-vegetables/" },
+      { label: "Market vegetables, and what we plan to grow", href: "/market-vegetables/" },
       { label: "The back place, where the storage would go", href: "/nelson-farm/" },
       { label: "Pasture raised chicken, sold direct off the farm", href: "/pastured-chicken/" },
     ],
