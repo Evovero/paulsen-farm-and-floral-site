@@ -10,6 +10,13 @@
 // lives in the client file noindex-register.md. After any change here run `node build.mjs`
 // then `node verify.mjs`, and do not publish on a red verify.
 //
+// SECOND FILL PASS, 2026-08-25. The pages left noindex by that triage are being filled to
+// 1,000+ words each, written forward looking. FILLING AND INDEXING ARE SEPARATE. A filled
+// page lives in a fill-*.mjs module behind src/data/filled.mjs, renders noindex while its
+// draft flag is true, and joins sitemap.xml and llms.txt automatically the moment the flag
+// comes off. That is deliberate: indexing one is a single word in a small data file and
+// never another rewrite of this 29 KB file.
+//
 // Everything renderable comes from src/data/*.mjs. Do not write copy into this file.
 
 import fs from "node:fs";
@@ -18,6 +25,7 @@ import { site, nav } from "./src/data/site.mjs";
 import { home, about, services, contact } from "./src/data/content.mjs";
 import { hubs, stubs, liveBlurbs, aboutChildren } from "./src/data/pages.mjs";
 import { promoted } from "./src/data/promoted.mjs";
+import { filled } from "./src/data/filled.mjs";
 
 const OUT = "dist";
 const YEAR = site.year;
@@ -373,8 +381,13 @@ function crossLinksHtml(links, heading) {
 // Hubs list their children by slug. A child is either one of the three finished service
 // pages (blurb lives in pages.mjs so content.mjs stays unaware of hubs) or a stub.
 const stubBySlug = Object.fromEntries(stubs.map((p) => [p.slug, p]));
+// Pages filled by the 2026-08-25 second triage. A filled page supersedes its stub even
+// while it is still draft, so hub cards and the stub loop both have to look here first.
+const filledBySlug = Object.fromEntries(filled.map((p) => [p.slug, p]));
 function cardFor(slug) {
   if (liveBlurbs[slug]) return { ...liveBlurbs[slug], href: slug, live: true };
+  const fl = filledBySlug[slug];
+  if (fl) return { navLabel: fl.navLabel, blurb: fl.blurb, href: slug, live: !fl.draft };
   const st = stubBySlug[slug];
   if (!st) throw new Error(`No card content for ${slug}. Add it to pages.mjs.`);
   return { navLabel: st.navLabel, blurb: st.blurb, href: slug, live: false };
@@ -560,6 +573,7 @@ function renderService(svc) {
       breadcrumbSchema(svc.navLabel, svc.slug),
     ],
     side: svc.side,
+    noindex: svc.draft === true,
   });
 }
 
@@ -725,7 +739,13 @@ function renderThankYou() {
 }
 
 // ---------- sitemap / robots / llms.txt ----------
-const indexableRoutes = ["/", "/farm/", "/floral/", "/pastured-chicken/", "/farm-pickup/", "/wreaths-and-garland/", "/wedding-flowers/", "/event-flowers/", "/sympathy-flowers/", "/about/", "/century-farm/", "/nelson-farm/", "/contact/"];
+const baseIndexableRoutes = ["/", "/farm/", "/floral/", "/pastured-chicken/", "/farm-pickup/", "/wreaths-and-garland/", "/wedding-flowers/", "/event-flowers/", "/sympathy-flowers/", "/about/", "/century-farm/", "/nelson-farm/", "/contact/"];
+// A filled page joins the sitemap and llms.txt the moment its draft flag comes off, so
+// indexing one is a single word in its fill module and never another edit to this file.
+const indexableRoutes = [
+  ...baseIndexableRoutes,
+  ...filled.filter((p) => !p.draft).map((p) => p.slug),
+];
 
 function buildSitemap() {
   const urls = indexableRoutes.map((r) => `  <url><loc>${BASE}${r}</loc></url>`).join("\n");
@@ -776,6 +796,7 @@ production volume before setting prices. Weddings are quoted per event.
 - [The Century Farm](${BASE}/century-farm/): the front place, worked by the Paulsen family since 1905
 - [The Nelson farm](${BASE}/nelson-farm/): the back place, close to eighty years in the family, and where the farm is headed
 - [Contact](${BASE}/contact/): join the list for chicken, wreaths or floral design
+${filled.filter((p) => !p.draft).map((p) => `- [${p.navLabel}](${BASE}${p.slug}): ${p.blurb}`).join("\n")}
 
 ## Contact
 
@@ -790,10 +811,10 @@ fs.mkdirSync(OUT, { recursive: true });
 
 writePage("/", renderHome());
 writePage("/about/", renderAbout());
-for (const svc of [...services, ...promoted]) writePage(svc.slug, renderService(svc));
+for (const svc of [...services, ...promoted, ...filled]) writePage(svc.slug, renderService(svc));
 writePage("/contact/", renderContact());
 for (const hub of hubs) writePage(hub.slug, renderHub(hub));
-for (const pg of stubs) writePage(pg.slug, renderStub(pg));
+for (const pg of stubs) if (!filledBySlug[pg.slug]) writePage(pg.slug, renderStub(pg));
 writePage("/thankyou/", renderThankYou());
 
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), buildSitemap(), "utf8");
@@ -813,7 +834,9 @@ copyFile("site.js");
 copyFile("assets/favicon.svg");
 
 const draftCount =
-  hubs.filter((h) => h.draft).length + stubs.length;
+  hubs.filter((h) => h.draft).length +
+  stubs.filter((p) => !filledBySlug[p.slug]).length +
+  filled.filter((p) => p.draft).length;
 const total = indexableRoutes.length + draftCount + 1;
 console.log(
   `Built ${total} pages to ${OUT}/ (${indexableRoutes.length} indexable, ${draftCount} draft noindex, 1 thankyou)`
