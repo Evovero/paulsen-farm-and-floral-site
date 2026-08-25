@@ -13,5 +13,6 @@
 // only when Spencer has read the copy and said yes, and that is one word: draft comes off
 // in its fill module, and build.mjs picks the route up from there automatically.
 import { fillFarmA } from "./fill-farm-a.mjs";
+import { fillFarmB } from "./fill-farm-b.mjs";
 
-export const filled = [...fillFarmA];
+export const filled = [...fillFarmA, ...fillFarmB];
