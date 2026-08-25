@@ -12,9 +12,20 @@
 // keeps it out of sitemap.xml and llms.txt. Spencer released that gate on 2026-08-25, so
 // filled pages now ship indexed. The flag stays because it is the mechanism, and because
 // verify.mjs holds a draft page to the word floor and both meta bounds either way.
+//
+// 19 pages across five batches. What is deliberately NOT here: /our-work/ (a gallery with
+// zero photographs) and /journal/ (a blog index with no posts). Both stay stubs and stay
+// noindex, because writing cannot fix either one.
 import { fillFarmA } from "./fill-farm-a.mjs";
 import { fillFarmB } from "./fill-farm-b.mjs";
 import { fillFloral } from "./fill-floral.mjs";
 import { fillVisitA } from "./fill-visit-a.mjs";
+import { fillVisitB } from "./fill-visit-b.mjs";
 
-export const filled = [...fillFarmA, ...fillFarmB, ...fillFloral, ...fillVisitA];
+export const filled = [
+  ...fillFarmA,
+  ...fillFarmB,
+  ...fillFloral,
+  ...fillVisitA,
+  ...fillVisitB,
+];
