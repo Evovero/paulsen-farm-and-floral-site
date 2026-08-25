@@ -1,8 +1,14 @@
 // Paulsen Farm and Floral - static site generator
 // FIRST REAL CONTENT BUILD, 2026-08-21. Zero dependencies, same conventions as the
 // EvoVero / Cruz Control / Omaha Masonry generators (see [Website]/Resources/Static Site
-// + Autoblog SOP.md). Six finished pages plus the ten year structure: section hubs and
-// short placeholder pages, all of them draft (noindex, out of the sitemap) until filled in.
+// + Autoblog SOP.md). Finished pages plus the ten year structure: section hubs and
+// short placeholder pages, the remaining ones draft (noindex, out of the sitemap).
+//
+// NOINDEX TRIAGE, 2026-08-25. Thirteen pages are now indexable, up from six. The five in
+// promoted.mjs were filled to spec and added to indexableRoutes below, the /farm/ and
+// /floral/ hubs were opened, and three pages were deleted outright. Per page reasoning
+// lives in the client file noindex-register.md. After any change here run `node build.mjs`
+// then `node verify.mjs`, and do not publish on a red verify.
 //
 // Everything renderable comes from src/data/*.mjs. Do not write copy into this file.
 
@@ -11,6 +17,7 @@ import path from "node:path";
 import { site, nav } from "./src/data/site.mjs";
 import { home, about, services, contact } from "./src/data/content.mjs";
 import { hubs, stubs, liveBlurbs, aboutChildren } from "./src/data/pages.mjs";
+import { promoted } from "./src/data/promoted.mjs";
 
 const OUT = "dist";
 const YEAR = site.year;
@@ -548,7 +555,7 @@ function renderService(svc) {
     bodyHtml: body,
     schemas: [
       orgSchema(),
-      serviceSchema(svc),
+      ...(svc.isStory ? [] : [serviceSchema(svc)]),
       faqSchema(svc.faq),
       breadcrumbSchema(svc.navLabel, svc.slug),
     ],
@@ -718,7 +725,7 @@ function renderThankYou() {
 }
 
 // ---------- sitemap / robots / llms.txt ----------
-const indexableRoutes = ["/", "/pastured-chicken/", "/wreaths-and-garland/", "/wedding-flowers/", "/about/", "/contact/"];
+const indexableRoutes = ["/", "/farm/", "/floral/", "/pastured-chicken/", "/farm-pickup/", "/wreaths-and-garland/", "/wedding-flowers/", "/event-flowers/", "/sympathy-flowers/", "/about/", "/century-farm/", "/nelson-farm/", "/contact/"];
 
 function buildSitemap() {
   const urls = indexableRoutes.map((r) => `  <url><loc>${BASE}${r}</loc></url>`).join("\n");
@@ -757,10 +764,17 @@ production volume before setting prices. Weddings are quoted per event.
 ## Pages
 
 - [Home](${BASE}/): what the farm and the floral studio do right now
+- [The farm](${BASE}/farm/): everything the farm side raises, and every way to buy it
 - [Pastured chicken](${BASE}/pastured-chicken/): broilers raised on pasture, sold by the batch off the farm
+- [Pickup at the farm](${BASE}/farm-pickup/): how to order ahead and collect an order at the farm
+- [The floral studio](${BASE}/floral/): design work and seasonal flowers, grown here where the season allows
 - [Wreaths and garland](${BASE}/wreaths-and-garland/): seasonal wreaths, garland and centerpieces, made in a limited fall run
-- [Wedding flowers](${BASE}/wedding-flowers/): floral design for weddings and events, delivered to the venue
+- [Wedding flowers](${BASE}/wedding-flowers/): floral design for weddings, delivered to the venue
+- [Event flowers](${BASE}/event-flowers/): floral design for showers, anniversaries, dinners and celebrations
+- [Sympathy flowers](${BASE}/sympathy-flowers/): arrangements for a service, a graveside or a front step
 - [Our story](${BASE}/about/): the two family farms, the Century Farm history, and why they farm this way
+- [The Century Farm](${BASE}/century-farm/): the front place, worked by the Paulsen family since 1905
+- [The Nelson farm](${BASE}/nelson-farm/): the back place, close to eighty years in the family, and where the farm is headed
 - [Contact](${BASE}/contact/): join the list for chicken, wreaths or floral design
 
 ## Contact
@@ -776,7 +790,7 @@ fs.mkdirSync(OUT, { recursive: true });
 
 writePage("/", renderHome());
 writePage("/about/", renderAbout());
-for (const svc of services) writePage(svc.slug, renderService(svc));
+for (const svc of [...services, ...promoted]) writePage(svc.slug, renderService(svc));
 writePage("/contact/", renderContact());
 for (const hub of hubs) writePage(hub.slug, renderHub(hub));
 for (const pg of stubs) writePage(pg.slug, renderStub(pg));
@@ -798,7 +812,8 @@ copyFile("styles.css");
 copyFile("site.js");
 copyFile("assets/favicon.svg");
 
-const draftCount = hubs.length + stubs.length;
+const draftCount =
+  hubs.filter((h) => h.draft).length + stubs.length;
 const total = indexableRoutes.length + draftCount + 1;
 console.log(
   `Built ${total} pages to ${OUT}/ (${indexableRoutes.length} indexable, ${draftCount} draft noindex, 1 thankyou)`
