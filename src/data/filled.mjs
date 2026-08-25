@@ -9,10 +9,11 @@
 // whose slug appears in this array.
 //
 // draft: true renders the page with <meta name="robots" content="noindex, follow"> and
-// keeps it out of sitemap.xml and llms.txt. FILLING IS NOT INDEXING. A page goes indexable
-// only when Spencer has read the copy and said yes, and that is one word: draft comes off
-// in its fill module, and build.mjs picks the route up from there automatically.
+// keeps it out of sitemap.xml and llms.txt. Spencer released that gate on 2026-08-25, so
+// filled pages now ship indexed. The flag stays because it is the mechanism, and because
+// verify.mjs holds a draft page to the word floor and both meta bounds either way.
 import { fillFarmA } from "./fill-farm-a.mjs";
 import { fillFarmB } from "./fill-farm-b.mjs";
+import { fillFloral } from "./fill-floral.mjs";
 
-export const filled = [...fillFarmA, ...fillFarmB];
+export const filled = [...fillFarmA, ...fillFarmB, ...fillFloral];
